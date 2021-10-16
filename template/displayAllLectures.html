@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <title>All Lectures</title>
+
+    <style>
+        html {
+            font-size: 10px;
+        }
+
+         :root {
+            --main-color: #48dbfb;
+            --btn-bg: #1e90ff;
+            --btn-text: white;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Container {
+            height: 100vh;
+            width: 100vw;
+            background: #f1f5f9;
+        }
+
+        .Container-block {
+            padding: 2.5rem;
+            margin-top: 10vh;
+            width: 80vw;
+            height: 60vh;
+            border-radius: 1rem;
+            background-color: var(--btn-text);
+        }
+
+        .header span:first-child {
+            margin-left: 25rem;
+            margin-right: 15rem;
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--main-color);
+            letter-spacing: 1px;
+        }
+
+        .header span:last-child {
+            padding: .5rem;
+            background-color: var(--main-color);
+            border-radius: .5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration:none;
+            letter-spacing: 1px;
+        }
+        .header span:last-child a{
+            text-decoration:none;
+            color:var(--btn-text);
+        }
+        th{
+            width:20rem;
+            font-size:1.5rem;
+            text-align:center;
+        }
+        td{
+            font-size:1.3rem;
+            text-align:center;
+        }
+        img{
+            width:3rem;
+            height:3rem;
+        }
+
+
+        .update span {
+            margin-right: 1rem;
+            margin-left:1rem;
+        }
+        .i{
+            color:var(--btn-bg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="Container center">
+        <div class="Container-block">
+
+            <div class="header center">
+                <span class="center">ALL LECTURES</span>
+                <span><a href="/lectureInterface">Add new Courses</a></span>
+            </div>
+
+
+                <table class="table">
+                  <thead>
+                        <tr>
+                            <th scope="col">Category Id /<br>Subject Id /<br>Course Id</th>
+                            <th scope="col">Lecture Id</th>
+                            <th scope="col">Lecture Name</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Icon</th>
+                            <th scope="col">Update</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        {% for row in rows %}
+                            <tr>
+                                <td>{{row.0}} / {{row.1}} /  {{row.2}}</td>
+                                <td>{{row.3}}</td>
+                                <td>{{row.4}}</td>
+                                <td>{{row.5}}</td>
+                                <td>
+                                    <a href="/static/{{row.6}}"><img src="/static/{{row.6}}"></a>
+                                </td>
+                                <td>
+                                    <div class="update">
+                                        <span>
+                                            <a href="/lecturebyid?lid={{row.3}}"><i class='fas fa-edit i'></i></a>
+                                        </span>
+                                        <span>
+                                            <a href="/lecturebyid?lid={{row.3}}"><i class='fas fa-trash-alt i'></i></a>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                  </tbody>
+                </table>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

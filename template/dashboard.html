@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            list-style-type: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --main-color: #fbc531;
+            --text-color: white;
+        }
+        
+        html {
+            font-size: 10px;
+        }
+        
+        .sidebar {
+            width: 33rem;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            height: 100%;
+            background-color: var(--main-color);
+        }
+        
+        .sidebar-title {
+            height: 10rem;
+            padding: 3rem;
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .sidebar-title span {
+            display: inline-block;
+            padding-right: 2rem;
+        }
+        
+        .sidebar-content li {
+            padding-left: 3rem;
+            width: 100%;
+            margin-bottom: 2.5rem;
+        }
+        
+        .sidebar-content a {
+            display: block;
+            font-size: 1.8rem;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
+        }
+        
+        .sidebar-content a.active {
+            height: 6rem;
+            background: #fff;
+            color: var(--main-color);
+            padding-left: 1rem;
+            border-radius: 5rem 0 0 5rem;
+        }
+        
+        .sidebar-content a span:first-child {
+            padding-right: 2rem;
+            font-size: 2.5rem;
+        }
+        
+
+        
+        .container {
+            margin-left: 33rem;
+        }
+        
+        header {
+            width: calc(100% - 330px);
+            display: flex;
+            justify-content: space-between;
+            padding: 3rem;
+            box-shadow: 0px 10px 8px #bdc3c7;
+            position:absolute;
+            left: 33rem;
+            top: 0;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--main-color);
+        }
+        
+        header label {
+            padding-right: 1.5rem;
+        }
+        
+        .user-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-wrapper div {
+            padding-left: 1rem;
+            color: var(--main-color);
+        }
+        
+        .user-wrapper h4 {
+            display: inline-block;
+            color: #596275;
+            padding-top: .5rem;
+        }
+        
+        .i {
+            font-size: 4rem;
+            color: var(--main-color);
+        }
+        
+        .main {
+            min-height: calc(100vh - 120px);
+            margin-top: 12rem;
+            padding: 2rem;
+            background: #f1f5f9;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .card-single {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 15rem;
+            background: #fff;
+            margin: 3rem;
+            padding: 3rem;
+            border-radius: .5rem;
+        }
+        
+        .card-single div:first-child {
+            font-size: 2rem;
+        }
+        
+        .card-single span {
+            margin-top: 2rem;
+            color: gray;
+        }
+        
+        .cs-i {
+            font-size: 6rem;
+            color: var(--main-color);
+        }
+        iframe{
+            width:100%;
+            height:70vh;
+            border:none;
+            padding:0;
+            background-color:#f1f5f9;
+        }
+        @media screen and (max-width:1200px){
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media screen and (max-width:960px){
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+        @media screen and (max-width:750px){
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .sidebar{
+                width:8.5rem;
+            }
+            header{
+                left:8.5rem;
+                width:88%;
+            }
+            header h1{
+                font-size:2.5rem;
+            }
+            #sidebar-toggle{
+                display:none;
+            }
+            .user-wrapper{
+                padding-right:2rem;
+            }
+            .container{
+                width:calc(100% - 80px);
+                margin-left:8rem;
+            }
+            .Text{
+                display:none;
+            }
+            .sidebar-title span:last-child{
+                display:none;
+            }
+
+        }
+        @media screen and (max-width:380px){
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+            .sidebar{
+                width:8.5rem;
+            }
+            header{
+                left:8.5rem;
+                width:82%;
+            }
+            header h1{
+                font-size:2.5rem;
+            }
+            .i{
+                font-size:2rem;
+            }
+            .container{
+                width:calc(100% - 80px);
+                margin-left:8rem;
+            }
+            .Text{
+                display:none;
+            }
+            .sidebar-title span:last-child{
+                display:none;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="sidebar">
+
+        <div class="sidebar-title">
+            <h1>
+                <span><i class="fab fa-accusoft"></i></span> <span class="Text">ASPIRE</span>
+            </h1>
+        </div>
+
+        <div class="sidebar-content">
+            <ul>
+                <li>
+                    <a href="./dashboard.html" class="active">
+                        <span><i class="fas fa-door-open "></i></span>
+                        <span class="Text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/displayallCategories" target="xy">
+                        <span><i class='fas fa-tasks '></i></span>
+                        <span class="Text">Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/displayallSubjects" target="xy">
+                        <span> <i class='fas fa-layer-group'></i></span>
+                        <span class="Text">Fields</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/companyInterface" target="xy">
+                        <span> <i class="fas fa-briefcase"></i></span>
+                        <span class="Text">Companies</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/displayallCourses" target="xy">
+                        <span><i class='fas fa-drum-steelpan'></i></span>
+                        <span class="Text">Courses</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/displayallLectures" target="xy">
+                        <span><i class="fas fa-book-reader"></i></span>
+                        <span class="Text">Lectures</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/problemInterface" target="xy">
+                        <span> <i class="fas fa-question"></i></span>
+                        <span class="Text">Add Questions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/adminlogin">
+                        <span><i class="fas fa-user-circle"></i></span>
+                        <span class="Text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <header>
+
+            <h1>
+                <span id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </span> Dashboard
+            </h1>
+
+            <div class="user-wrapper">
+                <i class="fas fa-user-tie i"></i>
+                <div>
+                    <h3>Mr. Alex</h3>
+                    <h4>Admin</h4>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="main">
+            <div class="cards">
+                <div class="card-single">
+                    <div>
+                        <h2>66644</h2>
+                        <span>Students</span>
+                    </div>
+                    <div>
+                        <span><i class="fas fa-user-graduate cs-i"></i></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h2>2342</h2>
+                        <span>Courses</span>
+                    </div>
+                    <div>
+                        <span><i class="fas fa-graduation-cap cs-i"></i></span>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div>
+                        <h2>544</h2>
+                        <span>Projects</span></div>
+                    <div>
+                        <span><i class="fas fa-project-diagram cs-i"></i></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <iframe name="xy" src="/displayallCategories"></iframe>
+
+
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            $('#sidebar-toggle').click(function(){
+                $('.sidebar').width('10rem');
+
+                $('.container').css("margin-left","100px");
+                $('header').css({"margin-left":"-230px","width":"93.5%"});
+                $('.Text').hide();
+            })
+        })
+        $(document).ready(function(){
+            $('#sidebar-toggle').dblclick(function(){
+                $('.sidebar').width('33rem');
+                $('.container').css("margin-left","330px");
+                $('header').css({"margin-left":"0px","width":"78.4%"});
+                $('.Text').show();
+            })
+        })
+    </script>
+</body>
+
+</html>

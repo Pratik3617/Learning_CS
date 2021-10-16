@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Preview</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/static/learning.js"></script>
+
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+
+        }
+        .center{
+            display:flex;
+            justify-content:center;
+        }
+        .Container{
+            width:100vw;
+            height:100vh;
+            overflow-x:hidden;
+            background:#bdc3c7;
+        }
+
+        header{
+            background:black;
+            display:flex;
+            flex-direction:row;
+            width:100vw;
+
+        }
+        .icon{
+            padding:8px 16px 8px 22px;
+            font-size:25px;
+            color:#fff;
+        }
+
+        .items{
+          padding: 16px;
+          font-size: 13px;
+          cursor: pointer;
+          font-weight:bold;
+        }
+        .userLogin{
+          margin-left:35vw;
+          display:flex;
+          justify-content:space-between;
+          font-size: 13px;
+          cursor: pointer;
+          font-weight:bold;
+        }
+
+        .userLogin .login{
+            padding: 16px;
+        }
+
+        a{
+             color:#fff;
+        }
+
+        h1{
+            margin-top:1.5rem;
+        }
+        .block h1 div:first-child{
+            font-size:60px;
+            color:lightsteelblue;
+            margin-bottom:-15px;
+        }
+        .title{
+            color:lightblue;
+            font-family: 'Scheherazade New', serif;
+            font-size:40px;
+            font-weight:bold;
+            letter-spacing:4px;
+        }
+
+        .block small{
+            font-size:12px;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        .Dropbtn {
+          color:#fff;
+          padding: 16px;
+          font-size: 13px;
+          border: none;
+          cursor: pointer;
+          font-weight:bold;
+          border:none;
+        }
+
+        .Dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .Dropdown-content {
+          display: none;
+          position: absolute;
+          margin-top:0rem;
+          height:auto;
+          min-width: 180px;
+          margin-left:5px;
+          background:none;
+          z-index:10;
+        }
+
+        .Dropdown-content a {
+          font-family: 'Scheherazade New', serif;
+          color: #222;
+          padding: 5px;
+          font-size:14px;
+          padding:10px;
+          display: block;
+          border-radius:5px;
+          background:#dfe6e9;
+          margin-bottom:4px;
+        }
+
+        .Dropdown-content a:hover {
+           background:#40739e;
+           color:#fff;
+        }
+
+        .Dropdown:hover .Dropdown-content {
+          display: block;
+        }
+        button{
+            background:none;
+        }
+
+        .i{
+            color:#222;
+            font-size:20px;
+        }
+
+        .Card{
+            width:100vw;
+            height:40vh;
+            background:#222;
+            position:relative;
+        }
+        .Card .first{
+            background:#40739e;
+            height:2rem;
+            width:22rem;
+            border-radius:0 50px 50px 0;
+            padding:10px;
+            padding-left:20px;
+            font-size:1.5rem;
+            font-weight:bold;
+            letter-spacing:2px;
+            margin-bottom:10px;
+            color:#fff;
+        }
+        .Card .Content{
+            color:#fff;
+            font-family: 'Scheherazade New', serif;
+            font-size:1rem;
+            padding:7px 10px 7px 150px;
+            width:40vw;
+        }
+        .Card .Content div{
+            padding:7px 0px;
+        }
+        .Card .Content-block{
+            height:15vh;
+        }
+
+        .Box{
+            background:#fff;
+            width:19rem;
+            height:auto;
+            margin:20px 10px;
+            border-radius:5px;
+            color:#222;
+            position:absolute;
+            right:6rem;
+            top:4rem;
+        }
+
+        .Box img{
+            width:29rem;
+            height:15rem;
+            border-radius:5px 5px 0 0;
+            border:none;
+            position:absolute;
+            right:0rem;
+            top:0rem;
+        }
+        .Box .Box-content{
+            width:29rem;
+            height:auto;
+            border-radius:0 0 5px 5px ;
+            border:none;
+            position:absolute;
+            right:0rem;
+            top:15rem;
+            background:#fff;
+        }
+
+        .Box .Box-content .topic{
+            font-size:1.5rem;
+            padding:10px 15px;
+            font-family: 'Scheherazade New', serif;
+            color:#40739e;
+        }
+        .Box .Box-content .topic1{
+            font-size:1rem;
+            padding:10px 20px;
+            font-family: 'Scheherazade New', serif;
+            color:#40739e;
+            font-weight:bold;
+            display:flex;
+            align-items:center;
+        }
+        .Box .Box-content div:nth-last-child(2){
+            font-size:1.5rem;
+            padding:10px 40px;
+        }
+        .i2{
+            font-size:1.5rem;
+        }
+        .Box .Box-content .topic2{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            font-size:1rem;
+            padding:10px 0px;
+            font-family: 'Scheherazade New', serif;
+            color:#40739e;
+            font-weight:bold;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .topic2 button{
+            border:none;
+            width:12rem;
+            height:2.5rem;
+            background:#40739e;
+            color:#fff;
+            font-weight:bold;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:5px;
+            font-size:1rem;
+        }
+        .topic2 div:first-child{
+            margin-left:-2.5rem;
+        }
+        .Content-Links{
+            width:25rem;
+            display:flex;
+            justify-content:space-between;
+            margin-top:4rem;
+
+        }
+        .Content-Links a{
+            display:flex;
+            justify-content:center;
+            color:#fff;
+            width:8rem;
+            height:1.95rem;
+            align-items:center;
+            border-radius:5px 5px 0 0;
+            cursor:pointer;
+        }
+
+        h4{
+            color:#40739e;
+            padding-left:10px;
+            padding-bottom:10px;
+            font-family: 'Scheherazade New', serif;
+            margin:1.5rem 0rem;
+            margin-top:2.5rem;
+            font-weight:bold;
+            font-size:1.5rem;
+            font-weight:bold;
+        }
+
+        .Block{
+            background:#fff;
+            width:19rem;
+            height:auto;
+            margin:20px 10px;
+            border-radius:5px;
+            color:#222;
+
+        }
+
+        .Block:hover{
+            transition: transform .5s;
+            transform: scale(1.1);
+            margin-left:20px;
+            cursor:pointer;
+            z-index:100;
+        }
+
+        .Block img{
+            width:19rem;
+            height:9rem;
+            border-radius:5px 5px 0 0;
+            border:none;
+        }
+        .Block .topic3{
+            height:3rem;
+            font-size:1.3rem;
+            padding:0 10px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Block .adjust{
+            display:flex;
+            justify-content:space-between;
+            font-family: 'Scheherazade New', serif;
+            padding:0 10px 0 0;
+        }
+        hr{
+            color:#ecf0f1;
+            margin:0 10px;
+        }
+        .Block .adjust div:first-child,.Block .adjust div:last-child{
+            display:flex;
+            font-size:0.9rem;
+            font-family: 'Scheherazade New', serif;
+            align-items:center;
+            color:#40739e;
+        }
+        .Block h5{
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+            margin-bottom:10px;
+        }
+
+        .Block div:nth-last-child(4){
+            font-size:1rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Block div:nth-last-child(3){
+            font-size:1rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Block div:nth-last-child(3) span{
+            color:#f9ca24;
+        }
+        .Block div:nth-last-child(2){
+            font-size:1.5rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+            color:#40739e;
+        }
+
+        .Block button{
+            font-size:1.2rem;
+            font-weight:bold;
+            width:17.8rem;
+            height:2rem;
+            margin:15px 10px;
+            background:#40739e;
+            color:#fff;
+            border-radius:5px;
+            border:none;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        .Related{
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+        }
+
+        .Curriculum-block,.Overview-block,.Author-block{
+            width:48vw;
+            min-height:48vh;
+            background:#fff;
+            border-radius:5px;
+            margin-top:2rem;
+            margin-left:9.5rem;
+            color:#222;
+            padding:20px;
+        }
+        .Curriculum{
+            background:#bdc3c7;
+            font-size:bold;
+        }
+        .Curriculum,Overview,Author{
+            border-radius:5px 5px 0 0;
+            width:8rem;
+            height:2rem;
+        }
+        .Overview-block,.Author-block{
+            display:none;
+        }
+
+        .Curriculum-content{
+            background:grey;
+            height:4rem;
+            width:46rem;
+            margin-bottom:1rem;
+            border-radius:5px;
+            position:relative;
+        }
+        .Curriculum-content span:first-child{
+            height:4rem;
+            width:5rem;
+        }
+        .Curriculum-content span:first-child span:last-child{
+            width:5rem;
+            height:4rem;
+            position:absolute;
+            left:0;
+            top:0;
+            font-size:2rem;
+            background: rgba(0, 0, 0, 0.4);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            border-radius:5px 0 0 5px;
+        }
+
+        .Curriculum-content span:first-child img{
+            width:5rem;
+            height:4rem;
+            border:none;
+            border-radius:5px 0 0 5px;
+        }
+        .Curriculum-content span:last-child{
+            height:4rem;
+            width:41rem;
+            display:inline-block;
+            position:absolute;
+            left:5rem;
+            top:0;
+
+        }
+        .Curriculum-content span:last-child div:first-child{
+            height:1.3rem;
+            padding:10px;
+            color:#fff;
+        }
+
+        .Curriculum-content span:last-child div:last-child{
+            background:#fff;
+            height:0.75rem;
+            color:#222;
+            border:1px groove grey;
+            padding:5px 10px;
+            border-radius:0px 0 5px 0;
+            display:flex;
+            align-items:center;
+        }
+
+        .modal{
+            width:100vw;
+            height:100vh;
+            background: rgba(0, 0, 0, 0.7);
+            position:fixed;
+            left:0;
+            top:0;
+            z-index:1;
+            overflow:auto;
+            display:none;
+        }
+        .modal-content{
+            background:#182C61;
+            width:38vw;
+            margin-left:29vw;
+            margin-top:20vh;
+            padding:1rem;
+            font-family: 'Scheherazade New', serif;
+            border-radius:10px;
+        }
+
+        .modal-content div:last-child,.modal-content a{
+            color:#fff;
+            font-family: 'Scheherazade New', serif;
+            font-weight:bold;
+            font-size:18px;
+            margin-bottom:1.5rem;
+            letter-spacing:2px;
+        }
+
+        .modal-content h2{
+            color:#fff;
+            font-family: 'Scheherazade New', serif;
+            margin-bottom:3rem;
+            font-size:2rem;
+        }
+        #close-btn,#close-btn1{
+            cursor:pointer;
+        }
+        .modal_btn{
+            color:#fff;
+            font-weight:bold;
+            font-size:25px;
+            display:flex;
+            justify-content:flex-end;
+        }
+        .input span{
+            margin-right:15px;
+            font-size:20px;
+        }
+        .input{
+            border-top:none;
+            border-right:none;
+            border-left:none;
+            border-bottom:1px solid #fff;
+            width:28vw;
+            margin-bottom:2rem;
+            font-family: 'Scheherazade New', serif;
+            margin-left:4.6rem;
+            padding-bottom:5px;
+            background:#182C61;
+            border-radius:0;
+        }
+        input{
+            border:none;
+            background:#182C61;
+            width:25vw;
+            color:#fff;
+            font-size:16px;
+            outline:none;
+        }
+        .button{
+            height:2.5rem;
+            width:28.5vw;
+            color:#fff;
+            font-weight:bold;
+            font-family: 'Scheherazade New', serif;
+            letter-spacing:3px;
+            background:#3498db;
+            border:none;
+            border-radius:10px;
+            font-size:20px;
+            margin-bottom:2rem;
+        }
+        .button:hover{
+            background:#3498db;
+        }
+        .email,.password,.name{
+            color:#fff;
+        }
+        #register1,login1{
+            cursor:pointer;
+        }
+        #user{
+            font-size:14px;
+            letter-spacing:2px;
+            display:flex;
+            align-items:center;
+            color:#fff;
+        }
+        .logout{
+            font-size:14px;
+            letter-spacing:2px;
+            display:flex;
+            align-items:center;
+            color:#fff;
+            margin-left:20px;
+        }
+        .i3{
+            font-size:18px;
+        }
+        footer{
+            width:100%;
+            height:30%;
+            background:#40739e;
+            color:#fff;
+        }
+        .footer-content{
+            display:flex;
+            justify-content:space-between;
+            padding:0.5rem;
+            margin-left:4rem;
+            margin-right:4rem;
+        }
+        .footer-content .items div,.footer-content .items div a{
+            font-family: 'Scheherazade New', serif;
+            font-size:15px;
+            margin-bottom:5px;
+        }
+
+        .footer-content .items div:first-child{
+            font-weight:bold;
+            font-size:18px;
+            margin-bottom:10px;
+            font-family: 'Scheherazade New', serif;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <div class="Container-content">
+                <header>
+                        <div class="icon">
+                            <i class="fab fa-accusoft"></i>
+                        </div>
+                        <div class="items">
+                            <div><a href="/userInterface"><i class="fas fa-home"></i> HOME</a></div>
+                        </div>
+                        <div class="Dropdown">
+                              <button class="Dropbtn">TUTORIALS</button>
+                              <div class="Dropdown-content">
+                                <a href="/gate">Gate</a>
+                                <a href="/competitiveprogramming">Competitive Programming</a>
+                                <a href="/dataStructures">Data Structures</a>
+                                <a href="/webTechnologies">Web Technologies</a>
+                                <a href="/dataScience">Data Science</a>
+                                <a href="/machineLearning">Machine Learning</a>
+                                <a href="/artificialIntelligence">Artificial Intelligence</a>
+                              </div>
+                        </div>
+
+                        <div class="Dropdown">
+                              <button class="Dropbtn">LANGUAGES</button>
+                              <div class="Dropdown-content">
+                                <a href="/C">C </a>
+                                <a href="/C++">C++</a>
+                                <a href="/python">Python </a>
+                                <a href="/java">Java</a>
+                                <a href="/javascript">JavaScript</a>
+                                <a href="/sql">SQL </a>
+                                <a href="/jquery">JQuery</a>
+                                <a href="/html">HTML </a>
+                                <a href="/css">CSS</a>
+                                <a href="/php">PHP</a>
+
+                              </div>
+                        </div>
+
+                        <div class="Dropdown">
+                              <button class="Dropbtn">CS SUBJECTS</button>
+                              <div class="Dropdown-content">
+                                    <a href="/dbms">DBMS </a>
+                                    <a href="/cso">CSO</a>
+                                    <a href="/mathematics">Mathematics </a>
+                                    <a href="/computerNetwork">Computer Networks</a>
+                                    <a href="/compilerDesign">Compiler Design</a>
+                                    <a href="/operatingSystem">operating System</a>
+                                    <a href="/digitalLogics">Digital Logics</a>
+                              </div>
+                        </div>
+
+                        <div class="Dropdown">
+                              <button class="Dropbtn">COMPANIES</button>
+                              <div class="Dropdown-content">
+                                    {% for srow in srows %}
+                                        <a href="{{srow.3}}">{{srow.2}}</a>
+                                    {% endfor %}
+                              </div>
+                        </div>
+
+
+
+
+                        <div class="items">
+                            <div><a href="#"><i class="fas fa-briefcase"></i> JOBS</a></div>
+                        </div>
+
+
+
+                        <div class="userLogin">
+
+                            {% if ses %}
+                                <div id="user"><i class="far fa-user-circle i3"></i> &nbsp;{{user.1}}</div>
+                                <div class="logout">
+                                    <a href="/userlogout"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <a id="register" data-target="#modal1"><i class="fas fa-sign-out-alt"></i> REGISTER</a>
+                                </div>
+                                <div>
+                                    <a id="login" data-target="#modal"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                </header>
+
+
+                <div class="Card">
+
+                    <div class="first">{{row.3}}</div>
+
+                    <div class="Content">
+                        <div class="Content-block">
+                            <div>{{row.12}}</div>
+                            <div>
+                                <span><i class="far fa-user"></i></span>&nbsp;&nbsp;&nbsp;{{row.9}}
+                            </div>
+                            <div>
+                                Rating: {{row.5}} <i class="fas fa-star" style="color:#f9ca24;"></i>
+                            </div>
+                            <div>
+                                <i class="fas fa-globe"></i>&nbsp;&nbsp;English
+                            </div>
+                        </div>
+
+                        <div class="Content-Links">
+
+                                <a class="Curriculum">Curriculum</a>
+
+
+                                <a class="Overview">Overview</a>
+
+
+                                <a class="AuthorDetails">Author Details</a>
+
+                        </div>
+                    </div>
+
+                    <div class="Box">
+                        <img src="/static/{{row.7}}">
+                        <div class="Box-content">
+                            <div class="topic">
+                                <b>This Course Includes :</b>
+                            </div>
+
+                            <div class="topic1">
+                                    <i class="far fa-clock i2"></i>
+                                &nbsp;&nbsp;{{row.6}} hours
+                            </div>
+
+                            <div class="topic1">
+                                <i class="fa fa-certificate i2"></i>&nbsp;&nbsp;Completition Certificate
+                            </div>
+                            <div class="topic1">
+                                <i class="far fa-play-circle i2"></i> &nbsp;&nbsp;{{row.11}} Lectures
+                            </div>
+                            <div class="topic1">
+                                <i class="fas fa-shield-alt i2"></i>&nbsp;&nbsp;Lifetime Access
+                            </div >
+                            <div class="topic1">
+                                <i class="fas fa-hand-holding-usd i2"></i>&nbsp;&nbsp;30-Days Money Back Guarantee
+                            </div>
+                            <div class="topic1">
+                                &#8377; {{row.10}} /-
+                            </div>
+                            <div class="topic2">
+                                <div>
+                                    <button>BUY NOW</button>
+                                </div>
+                                <div>
+                                    <button><i class="fas fa-shopping-cart i2"></i>&nbsp;&nbsp;ADD TO CART</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="Curriculum-block">
+                    {% for lrow in lrows %}
+                        <a href="/lecturePreview?lrow={{lrow}}">
+                            <div class="Curriculum-content">
+                                <span><img src="/static/{{lrow.6}}">
+                                    <span><i class="far fa-play-circle" style="color:#fff;"></i></span>
+                                </span>
+                                <span>
+                                    <div>{{lrow.4}}</div>
+                                    <div>{{lrow.5}} minutes</div>
+                                </span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="Overview-block">
+                    {{orow.4}}
+                </div>
+                <div class="Author-block">
+                    {{orow.13}}
+                </div>
+
+
+                <h4><span><i class="fas fa-video"></i></span> Related Courses</h4>
+                    <div class="Related">
+                        {% for row in rows %}
+                            <a href="/coursePreview?row={{row}}">
+                                <div class="Block">
+                                    <div>
+                                        <img src="/static/{{row.7}}">
+                                    </div>
+                                    <div class="topic3">
+                                        {{row.3}}
+                                    </div>
+                                    <hr>
+                                        <div class="adjust">
+                                            <div>
+                                                {{row.11}} Lectures
+                                            </div>
+                                            <div>
+                                                <span><i class="far fa-clock"></i></span>&nbsp;&nbsp;{{row.6}} hours
+                                            </div>
+                                        </div>
+                                    <hr>
+                                    <div>
+                                        <span><i class="far fa-user"></i> </span>&nbsp;&nbsp;{{row.9}}
+                                    </div>
+                                    <div>
+                                        Rating: {{row.5}} <span><i class="fas fa-star"></i></span>
+                                    </div>
+                                    <div>
+                                        &#8377; {{row.10}} /-
+                                    </div>
+                                    <div>
+                                        <button>BUY NOW</button>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+
+
+            </div>
+
+            <div class="modal" id="modal1">
+                <div class="modal-content">
+                    <div class="modal_btn">
+                        <span id="close-btn1">&times;</span>
+                    </div>
+                    <h2 class="center">Signup to Continue</h2>
+                    <div class="input center">
+                        <span class="name"><i class="far fa-user"></i></span><input  type="text" id="name" placeholder="Enter Name"/>
+                    </div>
+                    <div class="input center">
+                        <span class="email"><i class="far fa-envelope"></i></span><input  type="email" id="emailid" placeholder="Enter Email"/>
+                    </div>
+                    <div class="center">
+                        <button id="m_close" class="button">CONTINUE ></button>
+                    </div>
+                    <div class="center">
+                        Already have an Account? &nbsp;<a id="login1" data-target="#modal"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <div class="modal_btn">
+                        <span id="close-btn">&times;</span>
+                    </div>
+                    <h2 class="center">Login to Continue</h2>
+                    <div class="input center">
+                        <span class="email"><i class="far fa-envelope"></i></span><input  type="email" id="email" placeholder="Enter User Email"/>
+                    </div>
+                    <div class="input">
+                        <span class="password"><i class="fas fa-key"></i></span><input type="password" id="password" placeholder="Enter Password"/>
+                    </div>
+                    <div class="center">
+                        <button id="m_close1" class="button">CONTINUE ></button>
+                    </div>
+                    <div class="center">
+                        Don't have an Account? &nbsp;<a id="register1" data-target="#modal1"><i class="fas fa-sign-out-alt"></i> REGISTER</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <footer>
+                <div class="footer-content">
+                    <div class="items">
+                        <div>ABOUT US</div>
+                        <div><a href="#">Company</a></div>
+                        <div><a href="#">Our Team</a></div>
+                        <div><a href="#">Careers</a></div>
+                        <div><a href="#">Privacy Policy</a></div>
+                        <div><a href="#">Terms of Use</a></div>
+                        <div><a href="#">Refund Policy</a></div>
+                    </div>
+
+                    <div class="items">
+                        <div>CONNECT WITH US</div>
+                        <div class="center"><a href="#"><img src="/static/appstore.png"></a></div>
+                        <div class="center"><a href="#"><img src="/static/playstore.png"></a></div>
+                    </div>
+
+                    <div class="items">
+                        <div>CONTACT US</div>
+                        <div>Address:3rd Floor xyz Building , <br> Kavuri Hills , Hyderabad ,<br>Telangana , 50081</div>
+                    </div>
+                </div>
+
+            </footer>
+
+
+        </div>
+
+
+
+
+<script>
+    function setData(data){
+        data=data.replace("(","") ;
+        data=data.replace(")","");
+        data=data.replaceAll("'","");
+        data=data.split(",");
+        return data;
+    }
+    $(document).ready(function(){
+
+        $('.Curriculum').click(function(){
+            $('.Curriculum-block').show()
+            $('.Overview-block').hide()
+            $('.Author-block').hide()
+            $(this).css("background-color","#bdc3c7");
+            $('.Overview').css("background-color","#222");
+            $('.AuthorDetails').css("background-color","#222");
+        })
+
+        $('.Overview').click(function(){
+
+            $('.Overview-block').show()
+            $('.Curriculum-block').hide()
+            $('.Author-block').hide()
+            $(this).css("background-color","#bdc3c7");
+            $('.Curriculum').css("background-color","#222");
+            $('.AuthorDetails').css("background-color","#222");
+        })
+
+        $('.AuthorDetails').click(function(){
+            $('.Author-block').show()
+            $('.Curriculum-block').hide()
+            $('.Overview-block').hide()
+            $(this).css("background-color","#bdc3c7");
+            $('.Overview').css("background-color","#222");
+            $('.Curriculum').css("background-color","#222");
+        })
+    })
+    $(document).ready(function(){
+        $('#modal').hide();
+        $('#modal1').hide();
+
+        $('#login').click(function(){
+            $('#modal').show();
+            $('#modal1').hide();
+        })
+
+        $('#register').click(function(){
+            $('#modal1').show();
+            $('#modal').hide();
+        })
+
+        $('#close-btn').click(function(){
+            $('#modal').hide();
+        })
+        $('#close-btn1').click(function(){
+            $('#modal1').hide();
+        })
+
+        $('#login1').click(function(){
+            $('#modal').show();
+            $('#modal1').hide();
+        })
+
+        $('#register1').click(function(){
+            $('#modal1').show();
+            $('#modal').hide();
+        })
+
+        $('#m_close').click(function(){
+            $.getJSON("http://localhost:8000/userdetailsubmit",{name:$('#name').val(),email:$('#emailid').val(),password:$('#password1').val()},function(data){
+                   });
+                   $('#modal1').hide()
+        })
+
+        $('#m_close1').click(function(){
+            $.getJSON("http://localhost:8000/checkuserlogin",{email:$('#email').val()},function(data){
+                         if(data){
+                            $('#user').html(data[0])
+
+                            $.getJSON("http://localhost:8000/usersession",{email:$('#email').val(),name:data[0]},function(data){
+                                location.href="http://localhost:8000/user"
+                            })
+
+                         }
+                         else{
+                             $("#modal").show();
+                         }
+                   });
+                   $('#modal').hide()
+        })
+
+    })
+</script>
+
+</body>
+</html>

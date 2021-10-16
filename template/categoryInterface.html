@@ -18,7 +18,7 @@
         
          :root {
             --main-color: #48dbfb;
-            --btn-bg: #0652DD;
+            --btn-bg: #1e90ff;
             --btn-text: white;
         }
         
@@ -30,9 +30,10 @@
         }
         
         .Container {
-            height: 100%;
-            width: 100%;
-            background: white;
+            height: 100vh;
+            width: 100vw;
+            background-color:#f1f5f9;
+
         }
         
         .center {
@@ -44,16 +45,15 @@
         .Container-block {
             padding: 2.5rem;
             margin-top: 10vh;
-            width: 50vw;
-            height: 52vh;
-            border: 2px groove black;
+            width: 65vw;
+            height: 75vh;
             border-radius: 1rem;
             background-color: var(--btn-text);
         }
         
         .header span:first-child {
-            margin-left: 13rem;
-            margin-right: 8rem;
+            margin-left: 12rem;
+            margin-right: 7rem;
             font-size: 3rem;
             font-weight: bold;
             color: var(--main-color);
@@ -61,6 +61,8 @@
         
         .header span:last-child {
             padding: .5rem;
+            display:flex;
+            justify-content:flex-end;
             background-color: var(--main-color);
             border-radius: .5rem;
             font-size: 1.5rem;
@@ -73,9 +75,12 @@
         }
         
         .gap {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
-        
+        a{
+            text-decoration:none;
+            color:var(--btn-text);
+        }
         .input {
             border-color: black;
             height: 4rem;
@@ -103,9 +108,11 @@
             margin-right: 3rem;
         }
         
-        .file {
-            width: 20rem;
-            margin-left: 27rem;
+        .file{
+            width:28rem;
+            font-size:1.8rem;
+            border:1px solid black;
+            margin-left:-3rem;
         }
         
         .btn {
@@ -115,26 +122,31 @@
             font-weight: bold;
             margin-left: 2rem;
             margin-right: 2.5rem;
+            height:4rem;
+            width:14rem;
+            border-radius:.5rem;
         }
         
         .status {
             font-size: 1.3rem;
             font-weight: bold;
         }
+
+
     </style>
 
 
 </head>
 
 <body>
-    <form>
+    <form action="/submitCategories" method="post" enctype="multipart/form-data">{% csrf_token %}
         <div class="Container center">
             <div class="Container-block">
 
 
                 <div class="header center">
                     <span class="center">CATEGORY INTERFACE</span>
-                    <span>List Categories</span>
+                    <span><a href="/displayallCategories">List Categories</a></span>
                 </div>
 
                 <div class="Content">
@@ -172,18 +184,8 @@
 
                     <div class="Row gap">
 
-                        <div class="file is-boxed">
-                            <label class="file-label">
-                                <input class="file-input" type="file" name="icon">
-                                <span class="file-cta background">
-                                    <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                    </span>
-                                    <span class="file-label">
-                                        ICON
-                                    </span>
-                                </span>
-                            </label>
+                        <div>
+                            <input type="file" name="icon" class="form-control file" placeholder="Icon">
                         </div>
 
                     </div>
@@ -191,11 +193,11 @@
                 </div>
 
                 <div class="Row gap">
-                    <div class="">
-                        <div type="submit" class="btn">SUBMIT</div>
+                    <div>
+                        <button type="submit" class="btn">SUBMIT</button>
                     </div>
-                    <div class="">
-                        <div type="reset" class="btn">RESET</div>
+                    <div>
+                        <button type="reset" class="btn">RESET</button>
                     </div>
                 </div>
                 <div class="center">
