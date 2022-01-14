@@ -22,6 +22,8 @@ from .import lectureView
 from .import adminView
 from . import userView
 from .import companyView
+from django.views.static import serve
+from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -113,5 +115,9 @@ urlpatterns = [
     path('checkuserlogin/',userView.CheckUserLogin),
     path('usersession/',userView.UserSession),
     path('userlogout/', userView.UserLogout),
+
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':       settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
 ]
