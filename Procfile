@@ -1,1 +1,1 @@
-web: gunicorn app:Learning_CS
+web: gunicorn app:Learning_CS.wsgi
