@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Preview</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+
+        }
+        .center{
+            display:flex;
+            justify-content:center;
+        }
+        .Container{
+            width:100vw;
+            height:100vh;
+            overflow-x:hidden;
+        }
+        .Container-content{
+            padding:20px;
+        }
+        hr{
+            margin:5px 0 4rem 0;
+        }
+        .set {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        nav {
+            margin-bottom: 10px;
+        }
+
+        .card {
+            border-radius: 20px;
+            width: 20rem;
+            border: 2px groove #6F1E51;
+            padding:20px;
+            margin-bottom:20px;
+        }
+
+        h2 {
+            color: #6F1E51;
+            font-weight: bold;
+        }
+
+        .card-title {
+            color: #6F1E51;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="Container">
+        <div class="Container-content">
+            <h2>Your Notes</h2>
+            <hr>
+
+            <div class="set">
+                {% for row in rows %}
+                <div class="card">
+                    <div class="card-body" style="display: inline-block;">
+                        <span style="display:flex;justify-content:space-between;">
+                            <span class="card-title">{{row.2}}</span>
+                        </span>
+
+                        <p class="card-text">{{row.3}}</p>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

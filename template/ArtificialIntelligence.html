@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Preview</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/static/learning.js"></script>
+
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+
+        }
+        .center{
+            display:flex;
+            justify-content:center;
+        }
+        .Container{
+            width:100vw;
+            height:100vh;
+            overflow-x:hidden;
+            background:#bdc3c7;
+        }
+
+        header{
+            background:black;
+            display:flex;
+            flex-direction:row;
+            width:100vw;
+
+        }
+        .icon{
+            padding:8px 16px 8px 22px;
+            font-size:25px;
+            color:#fff;
+        }
+
+        .items{
+          padding: 16px;
+          font-size: 13px;
+          cursor: pointer;
+          font-weight:bold;
+        }
+        .userLogin{
+          margin-left:45vw;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          font-size: 13px;
+          cursor: pointer;
+          font-weight:bold;
+
+        }
+
+        a{
+             color:#fff;
+        }
+
+        h1{
+            margin-top:1.5rem;
+        }
+        .block h1 div:first-child{
+            font-size:60px;
+            color:lightsteelblue;
+            margin-bottom:-15px;
+        }
+        .title{
+            color:lightblue;
+            font-family: 'Scheherazade New', serif;
+            font-size:40px;
+            font-weight:bold;
+            letter-spacing:4px;
+        }
+
+        .block small{
+            font-size:12px;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        .Dropbtn {
+          color:#fff;
+          padding: 16px;
+          font-size: 13px;
+          border: none;
+          cursor: pointer;
+          font-weight:bold;
+          border:none;
+        }
+
+        .Dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .Dropdown-content {
+          display: none;
+          position: absolute;
+          margin-top:0rem;
+          height:auto;
+          min-width: 180px;
+          margin-left:5px;
+          background:none;
+          z-index:10;
+        }
+
+        .Dropdown-content a {
+          font-family: 'Scheherazade New', serif;
+          color: #222;
+          padding: 5px;
+          font-size:14px;
+          padding:10px;
+          display: block;
+          border-radius:5px;
+          background:#dfe6e9;
+          margin-bottom:4px;
+        }
+
+        .Dropdown-content a:hover {
+           background:#40739e;
+           color:#fff;
+        }
+
+        .Dropdown:hover .Dropdown-content {
+          display: block;
+        }
+        button{
+            background:none;
+        }
+
+        .i{
+            color:#222;
+            font-size:20px;
+        }
+
+        .modal{
+            width:100vw;
+            height:100vh;
+            background: rgba(0, 0, 0, 0.7);
+            position:fixed;
+            left:0;
+            top:0;
+            z-index:1;
+            overflow:auto;
+            display:none;
+        }
+
+        .modal-content{
+            background:#182C61;
+            width:38vw;
+            margin-left:29vw;
+            margin-top:20vh;
+            padding:1rem;
+            font-family: 'Scheherazade New', serif;
+            border-radius:10px;
+        }
+        .modal-content1{
+            background:#3c6382;
+            width:38vw;
+            margin-left:29vw;
+            margin-top:20vh;
+            padding:1rem;
+            font-family: 'Scheherazade New', serif;
+            border-radius:10px;
+        }
+
+        .modal-content div:last-child,.modal-content a{
+            color:#fff;
+            font-family: 'Scheherazade New', serif;
+            font-weight:bold;
+            font-size:18px;
+            margin-bottom:1.5rem;
+            letter-spacing:2px;
+        }
+
+        .modal-content h2{
+            color:#fff;
+            font-family: 'Scheherazade New', serif;
+            margin-bottom:3rem;
+            font-size:2rem;
+        }
+        #close-btn,#close-btn1,#close-btn2{
+            cursor:pointer;
+        }
+        .modal_btn{
+            color:#fff;
+            font-weight:bold;
+            font-size:25px;
+            display:flex;
+            justify-content:flex-end;
+        }
+        .input span{
+            margin-right:15px;
+            font-size:20px;
+        }
+        .input{
+            border-top:none;
+            border-right:none;
+            border-left:none;
+            border-bottom:1px solid #fff;
+            width:28vw;
+            margin-bottom:2rem;
+            font-family: 'Scheherazade New', serif;
+            margin-left:4.6rem;
+            padding-bottom:5px;
+            background:#182C61;
+            border-radius:0;
+        }
+        input{
+            border:none;
+            background:#182C61;
+            width:25vw;
+            color:#fff;
+            font-size:16px;
+            outline:none;
+        }
+        .button{
+            height:2.5rem;
+            width:28.5vw;
+            color:#fff;
+            font-weight:bold;
+            font-family: 'Scheherazade New', serif;
+            letter-spacing:3px;
+            background:#3498db;
+            border:none;
+            border-radius:10px;
+            font-size:20px;
+            margin-bottom:2rem;
+        }
+        .button:hover{
+            background:#3498db;
+        }
+        .email,.password,.name{
+            color:#fff;
+        }
+        #register1,#login1,#notes{
+            cursor:pointer;
+        }
+        footer{
+            width:100%;
+            height:30%;
+            background:#40739e;
+            color:#fff;
+        }
+        .footer-content{
+            display:flex;
+            justify-content:space-between;
+            padding:0.5rem;
+            margin-left:4rem;
+            margin-right:4rem;
+        }
+        .footer-content .items div,.footer-content .items div a{
+            font-family: 'Scheherazade New', serif;
+            font-size:15px;
+            margin-bottom:5px;
+        }
+
+        .footer-content .items div:first-child{
+            font-weight:bold;
+            font-size:18px;
+            margin-bottom:10px;
+            font-family: 'Scheherazade New', serif;
+        }
+
+        #user{
+            font-size:14px;
+            letter-spacing:2px;
+            display:flex;
+            align-items:center;
+            color:#fff;
+        }
+        .logout{
+            font-size:14px;
+            letter-spacing:2px;
+            margin-left:20px;
+            color:#fff;
+        }
+        .i3{
+            font-size:18px;
+        }
+
+        .data{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .Box{
+            background:#fff;
+            width:19rem;
+            height:auto;
+            margin:30px 10px;
+            border-radius:5px;
+            color:#222;
+
+        }
+
+        .Box:hover{
+            transition: transform .5s;
+            transform: scale(1.1);
+            margin-left:20px;
+            cursor:pointer;
+            z-index:100;
+        }
+
+        .Box img{
+            width:19rem;
+            height:9rem;
+            border-radius:5px 5px 0 0;
+            border:none;
+        }
+        .Box .topic{
+            height:3rem;
+            font-size:1.3rem;
+            padding:0 10px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Box .adjust{
+            display:flex;
+            justify-content:space-between;
+            font-family: 'Scheherazade New', serif;
+            padding:0 10px 0 0;
+        }
+        hr{
+            color:#ecf0f1;
+            margin:0 10px;
+        }
+        .Box .adjust div:first-child,.Box .adjust div:last-child{
+            display:flex;
+            font-size:0.9rem;
+            font-family: 'Scheherazade New', serif;
+            align-items:center;
+            color:#40739e;
+        }
+        .Box h5{
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+            margin-bottom:10px;
+        }
+
+        .Box div:nth-last-child(4){
+            font-size:1rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Box div:nth-last-child(3){
+            font-size:1rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+        }
+        .Box div:nth-last-child(3) span{
+            color:#f9ca24;
+        }
+        .Box div:nth-last-child(2){
+            font-size:1.5rem;
+            padding:5px 5px 5px 12px;
+            font-family: 'Scheherazade New', serif;
+            color:#40739e;
+        }
+
+        .Box button{
+            font-size:1.2rem;
+            font-weight:bold;
+            width:17.8rem;
+            height:2rem;
+            margin:15px 10px;
+            background:#40739e;
+            color:#fff;
+            border-radius:5px;
+            border:none;
+            font-family: 'Scheherazade New', serif;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="Container">
+        <div class="Container-content">
+                <header>
+                        <div class="icon">
+                            <i class="fab fa-accusoft"></i>
+                        </div>
+                        <div class="items">
+                            <div><a href="/userInterface"><i class="fas fa-home"></i> HOME</a></div>
+                        </div>
+                        <div class="Dropdown">
+                              <button class="Dropbtn">TUTORIALS</button>
+                              <div class="Dropdown-content">
+                                <a href="/gate">Gate</a>
+                                <a href="/competitiveprogramming">Competitive Programming</a>
+                                <a href="/dataStructures">Data Structures</a>
+                                <a href="/webTechnologies">Web Technologies</a>
+                                <a href="/dataScience">Data Science</a>
+                                <a href="/machineLearning">Machine Learning</a>
+                                <a href="/artificialIntelligence">Artificial Intelligence</a>
+                              </div>
+                        </div>
+
+                        <div class="Dropdown">
+                              <button class="Dropbtn">LANGUAGES</button>
+                              <div class="Dropdown-content">
+                                <a href="/C">C </a>
+                                <a href="/C++">C++</a>
+                                <a href="/python">Python </a>
+                                <a href="/java">Java</a>
+                                <a href="/javascript">JavaScript</a>
+                                <a href="/sql">SQL </a>
+                                <a href="/jquery">JQuery</a>
+                                <a href="/html">HTML </a>
+                                <a href="/css">CSS</a>
+                                <a href="/php">PHP</a>
+
+                              </div>
+                        </div>
+
+                        <div class="Dropdown">
+                              <button class="Dropbtn">CS SUBJECTS</button>
+                              <div class="Dropdown-content">
+                                    <a href="/dbms">DBMS </a>
+                                    <a href="/cso">CSO</a>
+                                    <a href="/mathematics">Mathematics </a>
+                                    <a href="/computerNetwork">Computer Networks</a>
+                                    <a href="/compilerDesign">Compiler Design</a>
+                                    <a href="/operatingSystem">operating System</a>
+                                    <a href="/digitalLogics">Digital Logics</a>
+                              </div>
+                        </div>
+
+                        <div class="items">
+                            <div><a href="#"><i class="fas fa-briefcase"></i> JOBS</a></div>
+                        </div>
+
+
+
+                        <div class="userLogin">
+
+                            {% if ses %}
+                                <div id="user"><i class="far fa-user-circle i3"></i> &nbsp;{{user.1}}</div>
+                                <div class="logout">
+                                    <a href="/userlogout"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+                                </div>
+                            {% else %}
+                                <div>
+                                    <a id="register" data-target="#modal1"><i class="fas fa-sign-out-alt"></i> REGISTER</a>
+                                </div>
+                                <div>
+                                    <a id="login" data-target="#modal"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                </header>
+
+                <div class="data">
+            {% for row in rows %}
+                <a href="/coursePreview?row={{row}}">
+                    <div class="Box">
+                        <div>
+                            <img src="/static/{{row.7}}">
+                        </div>
+                        <div class="topic">
+                            {{row.3}}
+                        </div>
+                        <hr>
+                            <div class="adjust">
+                                <div>
+                                    {{row.11}} Lectures
+                                </div>
+                                <div>
+                                    <span><i class="far fa-clock"></i></span>&nbsp;&nbsp;{{row.6}} hours
+                                </div>
+                            </div>
+                        <hr>
+                        <div>
+                            <span><i class="far fa-user"></i> </span>&nbsp;&nbsp;{{row.9}}
+                        </div>
+                        <div>
+                            Rating:{{row.5}} <span><i class="fas fa-star"></i></span>
+                        </div>
+                        <div>
+                            &#8377; {{row.10}} /-
+                        </div>
+                        <div>
+                            <button>BUY NOW</button>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+
+
+            <div class="modal" id="modal1">
+
+                <div class="modal-content">
+                    <div class="modal_btn">
+                        <span id="close-btn1">&times;</span>
+                    </div>
+                    <h2 class="center">Signup to Continue</h2>
+                    <div class="input center">
+                        <span class="name"><i class="far fa-user"></i></span><input  type="text" id="name" placeholder="Enter Name"/>
+                    </div>
+                    <div class="input center">
+                        <span class="email"><i class="far fa-envelope"></i></span><input  type="email" id="emailid" placeholder="Enter Email"/>
+                    </div>
+                    <div class="center">
+                        <button class="button">CONTINUE ></button>
+                    </div>
+                    <div class="center">
+                        Already have an Account? &nbsp;<a id="login1" data-target="#modal"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal" id="modal">
+
+                <div class="modal-content">
+                    <div class="modal_btn">
+                        <span id="close-btn">&times;</span>
+                    </div>
+                    <h2 class="center">Login to Continue</h2>
+                    <div class="input center">
+                        <span class="email"><i class="far fa-envelope"></i></span><input  type="email" id="email" placeholder="Enter User Email"/>
+                    </div>
+                    <div class="input">
+                        <span class="password"><i class="fas fa-key"></i></span><input type="password" id="password" placeholder="Enter Password"/>
+                    </div>
+                    <div class="center">
+                        <button class="button">CONTINUE ></button>
+                    </div>
+                    <div class="center">
+                        Don't have an Account? &nbsp;<a id="register1" data-target="#modal1"><i class="fas fa-sign-out-alt"></i> REGISTER</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <footer>
+                <div class="footer-content">
+                    <div class="items">
+                        <div>ABOUT US</div>
+                        <div><a href="#">Company</a></div>
+                        <div><a href="#">Our Team</a></div>
+                        <div><a href="#">Careers</a></div>
+                        <div><a href="#">Privacy Policy</a></div>
+                        <div><a href="#">Terms of Use</a></div>
+                        <div><a href="#">Refund Policy</a></div>
+                    </div>
+
+                    <div class="items">
+                        <div>CONNECT WITH US</div>
+                        <div class="center"><a href="#"><img src="/static/appstore.png"></a></div>
+                        <div class="center"><a href="#"><img src="/static/playstore.png"></a></div>
+                    </div>
+
+                    <div class="items">
+                        <div>CONTACT US</div>
+                        <div>Address:3rd Floor xyz Building , <br> Kavuri Hills , Hyderabad ,<br>Telangana , 50081</div>
+                    </div>
+                </div>
+
+            </footer>
+
+        </div>
+
+
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        $('#modal').hide();
+        $('#modal1').hide();
+        $('#modal2').hide();
+
+        $('#login').click(function(){
+            $('#modal').show();
+            $('#modal1').hide();
+            $('#modal2').hide();
+        })
+
+        $('#register').click(function(){
+            $('#modal1').show();
+            $('#modal').hide();
+            $('#modal2').hide();
+        })
+
+        $('#notes').click(function(){
+            $('#modal2').show();
+            $('#modal').hide();
+            $('#modal1').hide();
+        })
+
+
+        $('#close-btn').click(function(){
+            $('#modal').hide();
+        })
+        $('#close-btn1').click(function(){
+            $('#modal1').hide();
+        })
+        $('#close-btn2').click(function(){
+            $('#modal2').hide();
+        })
+
+        $('#login1').click(function(){
+            $('#modal').show();
+            $('#modal1').hide();
+        })
+
+        $('#register1').click(function(){
+            $('#modal1').show();
+            $('#modal').hide();
+        })
+
+        $('#m_close').click(function(){
+            $.getJSON("http://localhost:8000/userdetailsubmit",{name:$('#name').val(),email:$('#emailid').val(),password:$('#password1').val()},function(data){
+                   });
+                   $('#modal1').hide()
+        })
+
+        $('#m_close1').click(function(){
+            $.getJSON("http://localhost:8000/checkuserlogin",{email:$('#email').val()},function(data){
+                         if(data){
+                            $('#user').html(data[0])
+
+                            $.getJSON("http://localhost:8000/usersession",{email:$('#email').val(),name:data[0]},function(data){
+                                location.href="http://localhost:8000/user"
+                            })
+
+                         }
+                         else{
+                             $("#modal").show();
+                         }
+                   });
+                   $('#modal').hide()
+        })
+
+    })
+</script>
+
+</body>
+</html>
